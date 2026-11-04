@@ -1,0 +1,238 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Forma Studio — Architecture, held in winter light</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500&display=swap">
+<style>
+:root{--bg:#0a1424;--bg2:#101d33;--ink:#e8f1f8;--mut:#8da3ba;--cy:#7fe8ff;--wm:#e0573f;--ln:rgba(127,232,255,.18);--ser:'Instrument Serif',Georgia,serif;--san:'Inter Tight',system-ui,sans-serif;--top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;margin:0}html{background:var(--bg);scroll-behavior:auto}
+body{font:300 15px/1.6 var(--san);color:var(--ink);overflow-x:hidden}
+@media(pointer:fine){body,a,button{cursor:none}}
+a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;background:none;border:0}
+:focus-visible{outline:1px solid var(--cy);outline-offset:4px}
+#cur{position:fixed;left:0;top:0;z-index:99;pointer-events:none;width:38px;height:38px;margin:-19px 0 0 -19px;border:1px solid var(--cy);border-radius:50%;transition:width .3s,height .3s,margin .3s,background .3s;display:none}
+#cur i{position:absolute;left:50%;top:50%;width:4px;height:4px;margin:-2px;background:var(--cy);border-radius:50%}
+#cur b{position:absolute;left:46px;top:10px;font:400 11px var(--san);letter-spacing:.14em;color:var(--cy);white-space:nowrap;opacity:0;transition:.3s}
+#cur.hv{width:64px;height:64px;margin:-32px 0 0 -32px;background:rgba(127,232,255,.07)}#cur.hv b{opacity:1;left:72px;top:25px}
+@media(pointer:fine){#cur{display:block}}
+header{position:fixed;z-index:20;inset:0 0 auto 0;padding:calc(22px + var(--top)) clamp(18px,4vw,56px) 0;display:flex;align-items:center;justify-content:space-between;pointer-events:none}
+header>*{pointer-events:auto}
+.wm{font:400 27px var(--ser);display:flex;gap:10px;align-items:center}.wm svg{width:20px;height:20px}
+nav{display:flex;gap:30px;align-items:center}
+nav a{position:relative;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:4px 0}
+nav a:after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--cy);transform:scaleX(0);transform-origin:right;transition:transform .45s}
+nav a:hover:after{transform:scaleX(1);transform-origin:left}
+#snd{border:1px solid var(--ln);border-radius:99px;padding:7px 16px;font-size:12px;letter-spacing:.12em;background:rgba(10,20,36,.5);backdrop-filter:blur(8px);display:flex;gap:9px;align-items:center}
+#snd i{display:inline-flex;gap:2px;align-items:flex-end;height:11px}#snd i s{width:2px;background:var(--cy);height:3px;transition:height .3s}
+#snd[aria-pressed=true] i s{animation:eq 1s infinite alternate}#snd i s:nth-child(2){animation-delay:.2s}#snd i s:nth-child(3){animation-delay:.4s}
+@keyframes eq{to{height:11px}}
+#hero{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;background:linear-gradient(#0b1830,#16294a 70%,#0e1d36)}
+#cv{position:absolute;inset:0;width:100%;height:100%;display:block}
+#hero:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 65% 55%,transparent 45%,rgba(5,10,20,.55))}
+.ui{position:absolute;z-index:5;pointer-events:none}
+#txt{left:clamp(18px,4vw,56px);top:50%;transform:translateY(-52%);width:min(560px,86vw)}
+.k{font-size:11px;letter-spacing:.18em;color:var(--cy);display:flex;gap:14px;align-items:center;margin-bottom:22px}.k:after{content:"";height:1px;width:120px;background:var(--ln)}
+.hl{position:relative;font:400 clamp(44px,6.6vw,104px)/.95 var(--ser);letter-spacing:-.02em;pointer-events:auto;display:block}
+.hl em{color:var(--cy)}.hl .w{color:var(--wm);font-style:italic}
+.hl:after{content:attr(data-t);position:absolute;inset:0;color:transparent;-webkit-text-stroke:1px rgba(127,232,255,.9);background:linear-gradient(100deg,transparent 42%,rgba(190,245,255,.95) 50%,transparent 58%),repeating-linear-gradient(0deg,rgba(127,232,255,.7) 0 1px,transparent 1px 4px);background-size:300% 100%,100% 100%;background-position:130% 0,0 0;-webkit-background-clip:text;background-clip:text;opacity:0;pointer-events:none}
+.hl.sc:after{animation:scan 1.4s ease-in-out}
+@keyframes scan{0%{background-position:130% 0,0 0;opacity:1}100%{background-position:-30% 0,0 0;opacity:1}}
+.ds{max-width:380px;margin-top:22px;color:var(--mut);font-size:15px}
+#txt.sw .hl,#txt.sw .ds{opacity:0;transform:translateY(12px)}.hl,.ds{transition:opacity .32s,transform .32s}
+#views{right:clamp(18px,4vw,56px);top:50%;transform:translateY(-62%);width:190px;pointer-events:auto}
+#views h6{font:400 11px var(--san);letter-spacing:.18em;color:var(--mut);margin-bottom:10px}
+#views button{display:flex;width:100%;gap:12px;align-items:center;padding:8px 0;border-top:1px solid var(--ln);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);transition:.3s;text-align:left}
+#views button:hover,#views button[aria-current=true]{color:var(--ink);padding-left:8px}
+#views button i{width:6px;height:6px;border:1px solid var(--cy);border-radius:50%;margin-left:auto;transition:.3s}#views button[aria-current=true] i{background:var(--cy);box-shadow:0 0 10px var(--cy)}
+#info{right:clamp(18px,4vw,56px);bottom:calc(60px + env(safe-area-inset-bottom,0px));width:260px;border-top:1px solid var(--ln);padding-top:12px;pointer-events:auto;font-size:12px;color:var(--mut)}
+#info button{margin-top:10px;color:var(--cy);letter-spacing:.14em;font-size:11px;text-transform:uppercase;display:flex;gap:10px;align-items:center}
+#info button:hover svg{transform:translateX(6px)}#info svg{width:34px;height:8px;transition:.4s}
+#strip{left:0;right:0;bottom:0;height:40px;border-top:1px solid var(--ln);overflow:hidden;font-size:11px;letter-spacing:.2em;color:var(--mut);display:flex;align-items:center;background:rgba(8,15,28,.35)}
+#strip div{display:flex;gap:44px;white-space:nowrap;animation:mq 50s linear infinite;padding-left:44px}@keyframes mq{to{transform:translateX(-50%)}}
+#guide{position:absolute;z-index:4;width:120px;height:120px;margin:-60px;pointer-events:none;opacity:0;transition:opacity .4s}
+#guide:before,#guide:after{content:"";position:absolute;inset:0;border:1px solid var(--cy);clip-path:polygon(0 0,28% 0,28% 1px,1px 1px,1px 28%,0 28%,0 0,0 100%,28% 100%,28% calc(100% - 1px),1px calc(100% - 1px),1px 72%,0 72%,100% 0,72% 0,72% 1px,calc(100% - 1px) 1px,calc(100% - 1px) 28%,100% 28%,100% 100%,72% 100%,72% calc(100% - 1px),calc(100% - 1px) calc(100% - 1px),calc(100% - 1px) 72%,100% 72%)}
+#guide span{position:absolute;left:128px;top:-6px;font-size:10px;letter-spacing:.16em;color:var(--cy);white-space:nowrap;border-top:1px solid var(--cy);padding-top:4px}
+#guide.on{opacity:1}
+#load{position:fixed;inset:0;z-index:60;background:var(--bg);display:grid;place-items:center;transition:opacity .9s .1s,visibility 1s;text-align:center}
+#load.off{opacity:0;visibility:hidden}#load .wm{justify-content:center;font-size:40px}
+#bar{width:180px;height:1px;background:var(--ln);margin:22px auto 10px;overflow:hidden}#bar i{display:block;height:100%;width:30%;background:var(--cy);animation:ld 1.4s infinite ease-in-out}@keyframes ld{from{transform:translateX(-100%)}to{transform:translateX(400%)}}
+section.s{position:relative;background:var(--bg)}
+.pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+#s1{height:260vh}#s1 .pin{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(24px,5vw,90px);align-items:center;padding:0 clamp(18px,4vw,56px)}
+.vis{position:relative;height:min(82vh,900px);aspect-ratio:4/5;justify-self:center;max-width:100%;border:1px solid var(--ln);overflow:hidden;background:#0a1424}
+.vis img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:clip-path}
+#lm{filter:grayscale(.85) contrast(1.15) brightness(.8) sepia(.3) hue-rotate(170deg)}
+#ln{position:absolute;left:0;right:0;height:1px;background:var(--cy);box-shadow:0 0 14px 2px var(--cy);top:0}
+.an{position:absolute;font-size:10px;letter-spacing:.16em;color:var(--cy);border-top:1px solid var(--cy);padding-top:4px;width:120px;opacity:.85}
+.r h2,.tl{font:400 clamp(38px,4.8vw,76px)/1 var(--ser);letter-spacing:-.02em}.r h2 em,.tl em{color:var(--cy)}
+.r p.l{color:var(--mut);max-width:440px;margin:24px 0 34px}
+.sv{border-top:1px solid var(--ln);padding:16px 0;display:grid;grid-template-columns:1fr;gap:4px;transition:padding .4s}.sv:hover{padding-left:12px}
+.sv h3{font:400 24px var(--ser)}.sv p{font-size:13px;color:var(--mut);max-width:420px}
+#s2{height:560vh}#s2 .pin{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(20px,4vw,70px);align-items:center;padding:calc(70px + var(--top)) clamp(18px,4vw,56px) 20px}
+#steps{margin-top:30px}.st{border-top:1px solid var(--ln);padding:14px 0;opacity:.3;transition:opacity .5s}.st.on{opacity:1}.st h4{font:400 26px var(--ser)}.st.on h4{color:var(--cy)}.st p{font-size:13px;color:var(--mut);max-width:400px;max-height:0;overflow:hidden;transition:max-height .5s}.st.on p{max-height:90px}
+#plan{position:relative;height:100%;max-height:82vh;aspect-ratio:1;justify-self:center}
+#plan svg{width:100%;height:100%;overflow:visible}
+#plan .d{fill:none;stroke:var(--cy);stroke-width:1.2;vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:1}
+#plan .wl{stroke-width:3;stroke:#e8f1f8}#plan .fw{stroke:#e0573f;fill:rgba(224,87,63,.08)}#plan text{fill:var(--mut);font:400 9px var(--san);letter-spacing:.14em}
+.mk{cursor:none}.mk circle{fill:var(--bg);stroke:var(--wm);stroke-width:1.5}.mk:hover circle,.mk:focus circle{fill:var(--wm)}
+#tip{position:absolute;pointer-events:none;background:rgba(10,20,36,.92);border:1px solid var(--ln);padding:12px 14px;max-width:220px;font-size:12px;opacity:0;transition:opacity .25s;z-index:5}#tip b{display:block;font:400 18px var(--ser);color:var(--cy)}
+footer{padding:clamp(80px,14vh,160px) clamp(18px,4vw,56px) 28px;border-top:1px solid var(--ln);background:linear-gradient(var(--bg),#070e1a)}
+footer .tl{font-size:clamp(46px,8vw,128px)}.fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:30px;margin:80px 0 50px}
+.fg h5{font:400 11px var(--san);letter-spacing:.18em;color:var(--mut);margin-bottom:12px}.fg a,.fg p{display:block;font-size:14px;padding:2px 0}.fg a:hover{color:var(--cy)}
+.fb{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;border-top:1px solid var(--ln);padding-top:20px;font-size:12px;color:var(--mut)}
+.fb button{border:1px solid var(--ln);padding:7px 16px;border-radius:99px;letter-spacing:.12em;font-size:11px}.fb button:hover{border-color:var(--cy);color:var(--cy)}
+@media(max-width:860px){nav a{display:none}#views{top:auto;bottom:140px;transform:none;width:150px}#views h6{display:none}#info{display:none}#txt{top:34%}.ds{font-size:14px}
+#s1 .pin,#s2 .pin{grid-template-columns:1fr;gap:12px;align-content:start;padding-top:calc(70px + var(--top))}.vis{height:44vh}.sv p{display:none}.r p.l{margin:12px 0}.sv{padding:9px 0}#plan{max-height:42vh}.st{padding:8px 0}.st h4{font-size:20px}.st.on p{max-height:70px}}
+@media(prefers-reduced-motion:reduce){#strip div,#snd i s,#bar i{animation:none!important}.hl:after{display:none}}
+</style></head><body>
+<div id="cur"><i></i><b></b></div>
+<div id="load"><div><div class="wm">Forma</div><div id="bar"><i></i></div><small style="letter-spacing:.2em;font-size:11px;color:var(--mut)">PREPARING THE PAVILION</small></div></div>
+<header><a class="wm" href="#hero" data-c="Top"><svg viewBox="0 0 20 20" fill="none" stroke="#7fe8ff"><rect x=".5" y=".5" width="19" height="19"/><path d="M10 .5v19M.5 10h19"/></svg>Forma</a>
+<nav><a href="#s1" data-c="Go">Studio</a><a href="#s2" data-c="Go">Process</a><a href="#ft" data-c="Go">Contact</a><button id="snd" aria-pressed="false" aria-label="Toggle ambient sound" data-c="Sound"><i><s></s><s></s><s></s></i><span>SOUND OFF</span></button></nav></header>
+<main>
+<section id="hero"><canvas id="cv" aria-label="Interactive 3D timber pavilion in winter"></canvas><div id="guide"><span></span></div>
+<div class="ui" id="txt"><div class="k"><span id="kn">01 / 05</span></div><h1 class="hl" id="hl" tabindex="0"></h1><p class="ds" id="ds"></p></div>
+<div class="ui" id="views"><h6>VIEWS</h6><div id="vb"></div></div>
+<div class="ui" id="info"><p>A timber pavilion seen across still water at blue hour: form, light and setting.</p><button id="ex" data-c="Inspect">Explore the structure <svg viewBox="0 0 34 8" fill="none" stroke="currentColor"><path d="M0 4h33M29 .5 33 4l-4 3.5"/></svg></button></div>
+<div class="ui" id="strip"><div id="sd"></div></div></section>
+
+<section class="s" id="s1"><div class="pin"><div class="vis" id="vis"><img id="lw" alt="" ><img id="lm" alt=""><img id="lf" alt="Finished winter visualization of the pavilion"><div id="ln"></div>
+<span class="an" style="left:6%;top:12%">ROOF TIERS · 5</span><span class="an" style="right:6%;top:46%">TIMBER FRAME</span><span class="an" style="left:6%;bottom:12%">WATERLINE</span></div>
+<div class="r"><h2>From structure to <em>atmosphere</em></h2><p class="l">We begin with the line and end in light. Forma builds architectural imagery that reads as a drawing first and a place second — precise in form, quiet in tone.</p>
+<div class="sv"><h3>Architectural Imagery</h3><p>Still images composed for planning, sale and publication.</p></div><div class="sv"><h3>Cinematic Films</h3><p>Slow, deliberate camera work that lets a building arrive.</p></div><div class="sv"><h3>Interactive Experiences</h3><p>Real-time walkthroughs that put clients inside the design.</p></div></div></div></section>
+
+<section class="s" id="s2"><div class="pin"><div><h2 class="tl">Inside the <em>design</em></h2><div id="steps"></div></div>
+<div id="plan"><svg viewBox="0 0 600 600" role="img" aria-label="Conceptual floor plan of a five-tier pavilion"><g id="g"></g></svg><div id="tip"></div></div></div></section>
+</main>
+<footer id="ft"><div class="tl">Let’s shape your<br><em>next vision</em></div>
+<div class="fg"><div><div class="wm">Forma</div><p style="color:var(--mut);margin-top:10px">Architectural visualization studio.</p></div><div><h5>SECTIONS</h5><a href="#hero">Hero</a><a href="#s1">Studio</a><a href="#s2">Process</a></div><div><h5>CONTACT</h5><p style="color:var(--mut)">Contact details to be added.</p></div></div>
+<div class="fb"><span>© 2026 Forma Studio</span><button id="snd2" data-c="Sound">SOUND</button><button id="top" data-c="Top">BACK TO TOP</button></div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<script>
+const $=s=>document.querySelector(s),RM=matchMedia('(prefers-reduced-motion:reduce)').matches,MOB=innerWidth<860;
+const ST=[["Architecture,<br>held in <em>winter</em> light.","Cinematic imagery for architects and developers — precise in form, quiet in tone."],
+["Still water,<br>a <em>second</em> pavilion.","At the waterline the structure doubles, and every ripple redraws its edges."],
+["Five roofs,<br>one <em>rising</em> line.","Each tier steps back and lifts, a rhythm of timber and slate."],
+["From above,<br>the <em>plan</em> appears.","Looking down, symmetry reveals how the pavilion is organised."],
+["Form, light<br>and <em>setting.</em>","The first read of a building should feel inevitable. We make it so."]];
+const NM=["Approach","Reflection","Layers","Roof plan","Detail"];
+$('#vb').innerHTML=NM.map((n,i)=>`<button data-i="${i}" data-c="View">${String(i+1).padStart(2,'0')} ${n}<i></i></button>`).join('');
+$('#sd').innerHTML=Array(2).fill(["TIMBER FRAME","VERMILION LACQUER","SLATE ROOF","STILL WATER","SNOW LOAD","CORNER EAVES","BRACKET SETS","WINTER LIGHT"].map(x=>`<span>${x}</span>`).join('')).join('');
+/* ---- audio (synthesised: no audio generation tool was available) ---- */
+let AC,master,on=false,lastPing=0;
+function nb(){const b=AC.createBuffer(1,AC.sampleRate*2,AC.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;return b}
+function startAudio(){AC=AC||new AudioContext();master=master||AC.createGain();master.connect(AC.destination);master.gain.value=0;
+ if(!AC.amb){AC.amb=1;const n=AC.createBufferSource();n.buffer=nb();n.loop=true;const f=AC.createBiquadFilter();f.type='bandpass';f.frequency.value=380;f.Q.value=.6;const g=AC.createGain();g.gain.value=.16;const l=AC.createOscillator(),lg=AC.createGain();l.frequency.value=.09;lg.gain.value=.08;l.connect(lg);lg.connect(g.gain);l.start();n.connect(f);f.connect(g);g.connect(master);n.start();
+ [110,164.8,220.5].forEach((fr,i)=>{const o=AC.createOscillator(),og=AC.createGain();o.frequency.value=fr;og.gain.value=.025/(i+1);o.connect(og);og.connect(master);o.start()})}
+ AC.resume();master.gain.linearRampToValueAtTime(.8,AC.currentTime+1.5)}
+function setSound(v){on=v;document.querySelectorAll('#snd,#snd2').forEach(b=>b.setAttribute('aria-pressed',v));$('#snd span').textContent=v?'SOUND ON':'SOUND OFF';$('#snd2').textContent=v?'SOUND ON':'SOUND OFF';
+ if(v)startAudio();else if(master)master.gain.linearRampToValueAtTime(0,AC.currentTime+.6)}
+$('#snd').onclick=$('#snd2').onclick=()=>setSound(!on);
+function whoosh(){if(!on)return;const t=AC.currentTime,n=AC.createBufferSource();n.buffer=nb();const f=AC.createBiquadFilter();f.type='bandpass';f.Q.value=.8;f.frequency.setValueAtTime(300,t);f.frequency.exponentialRampToValueAtTime(1400,t+.7);f.frequency.exponentialRampToValueAtTime(400,t+1.4);const g=AC.createGain();g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.22,t+.6);g.gain.linearRampToValueAtTime(0,t+1.4);n.connect(f);f.connect(g);g.connect(master);n.start(t);n.stop(t+1.5)}
+function ping(fr=880){if(!on||AC.currentTime-lastPing<.9)return;lastPing=AC.currentTime;const t=AC.currentTime,o=AC.createOscillator(),g=AC.createGain();o.type='sine';o.frequency.value=fr;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.07,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+.9);o.connect(g);g.connect(master);o.start(t);o.stop(t+1)}
+/* ---- three ---- */
+const cv=$('#cv'),hero=$('#hero');
+const R=new THREE.WebGLRenderer({canvas:cv,antialias:!MOB,powerPreference:'high-performance'});
+let Q=Math.min(devicePixelRatio,MOB?1.5:2);R.setPixelRatio(Q);R.outputEncoding=THREE.sRGBEncoding;R.toneMapping=THREE.ACESFilmicToneMapping;R.toneMappingExposure=1.15;
+const sc=new THREE.Scene();sc.background=new THREE.Color(0x13233f);sc.fog=new THREE.FogExp2(0x162a49,.014);
+const cam=new THREE.PerspectiveCamera(38,1,.1,400);
+sc.add(new THREE.HemisphereLight(0xa9c6ee,0x1a2c4a,1.1));
+const dl=new THREE.DirectionalLight(0xcfe0ff,.9);dl.position.set(-8,16,10);sc.add(dl);
+const wl=[[0,3,0],[0,5.5,0],[0,8,0]].map(p=>{const l=new THREE.PointLight(0xffb06a,.9,9);l.position.set(...p);sc.add(l);return l});
+const B=new THREE.Group();sc.add(B);let bld,refl,wire,meshes=[],wmat;
+const wu={uP:{value:new THREE.Vector3(0,-99,0)},uR:{value:2.6},uA:{value:0}};
+wmat=new THREE.ShaderMaterial({uniforms:wu,wireframe:true,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,vertexShader:'varying vec3 w;void main(){w=(modelMatrix*vec4(position,1.)).xyz;gl_Position=projectionMatrix*viewMatrix*vec4(w,1.);}',fragmentShader:'uniform vec3 uP;uniform float uR,uA;varying vec3 w;void main(){float n=sin(w.x*6.+w.y*4.)*.5+sin(w.z*7.-w.y*3.)*.5;float r=uR*(.8+.2*n);float a=smoothstep(r,r*.35,distance(w,uP))*uA;gl_FragColor=vec4(.5,.92,1.,a*.8);}'});
+const water=new THREE.Mesh(new THREE.PlaneGeometry(400,400),new THREE.ShaderMaterial({transparent:true,depthWrite:false,uniforms:{t:{value:0}},
+vertexShader:'varying vec3 w;void main(){w=(modelMatrix*vec4(position,1.)).xyz;gl_Position=projectionMatrix*viewMatrix*vec4(w,1.);}',
+fragmentShader:'uniform float t;varying vec3 w;void main(){vec2 p=w.xz;float r=sin(p.x*2.1+t*.9)*sin(p.y*1.7-t*.7)+sin(length(p)*3.-t*1.3)*.6+sin((p.x+p.y)*4.+t*1.8)*.3;float v=smoothstep(.9,1.6,r);float d=length(cameraPosition-w);vec3 c=mix(vec3(.04,.1,.2),vec3(.12,.22,.38),clamp(d/50.,0.,1.));c+=v*vec3(.25,.45,.6);gl_FragColor=vec4(c,.74+.1*v);}'}));
+water.rotation.x=-Math.PI/2;water.position.y=.02;water.renderOrder=2;sc.add(water);
+/* snow */
+const SN=MOB?1400:3200,sp=new Float32Array(SN*3),sv=new Float32Array(SN);for(let i=0;i<SN;i++){sp.set([(Math.random()-.5)*60,Math.random()*30,(Math.random()-.5)*60],i*3);sv[i]=.5+Math.random()*1.2}
+const sg=new THREE.BufferGeometry();sg.setAttribute('position',new THREE.BufferAttribute(sp,3));
+const cc=document.createElement('canvas');cc.width=cc.height=32;const cx=cc.getContext('2d'),gr=cx.createRadialGradient(16,16,0,16,16,16);gr.addColorStop(0,'#fff');gr.addColorStop(1,'rgba(255,255,255,0)');cx.fillStyle=gr;cx.fillRect(0,0,32,32);
+const snow=new THREE.Points(sg,new THREE.PointsMaterial({size:.16,map:new THREE.CanvasTexture(cc),transparent:true,depthWrite:false,opacity:.85,color:0xe8f4ff}));sc.add(snow);
+/* stages */
+const CS=[{p:[14,5.2,16],t:[0,4.6,0],s:0},{p:[8,1,12],t:[0,3.6,0],s:0},{p:[-11,8,9],t:[0,6.2,0],s:0},{p:[2.5,20,5],t:[0,3,0],s:0},{p:[11,6,13],t:[0,4.8,0],s:.2}];
+let cur=0,tw=null,cp=new THREE.Vector3(...CS[0].p),ct=new THREE.Vector3(...CS[0].t),cs=0,locked=true;
+const ease=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+function go(i){if(tw||i<0||i>4||i===cur)return;const a={p:cp.clone(),t:ct.clone(),s:cs},b=CS[i],d=RM?1:1400,t0=performance.now();tw=1;
+ $('#txt').classList.add('sw');setTimeout(()=>{const[h,ds]=ST[i];$('#hl').innerHTML=h;$('#hl').dataset.t=$('#hl').textContent;$('#ds').textContent=ds;$('#kn').textContent=`0${i+1} / 05`;$('#txt').classList.remove('sw')},RM?0:260);
+ document.querySelectorAll('#vb button').forEach((e,k)=>e.setAttribute('aria-current',k===i));whoosh();cur=i;
+ (function s(){const k=Math.min(1,(performance.now()-t0)/d),e=ease(k);cp.lerpVectors(a.p,new THREE.Vector3(...b.p),e);ct.lerpVectors(a.t,new THREE.Vector3(...b.t),e);cs=a.s+(b.s-a.s)*e;if(k<1)requestAnimationFrame(s);else{tw=null;lock=performance.now()}})()}
+let lock=0;
+document.querySelectorAll('#vb button').forEach(b=>b.onclick=()=>go(+b.dataset.i));
+addEventListener('wheel',e=>{if(scrollY>2||!locked)return;const dn=e.deltaY>0;
+ if(dn&&cur===4){return}e.preventDefault();if(tw||performance.now()-lock<350||Math.abs(e.deltaY)<4){lock=performance.now();return}lock=performance.now()+1500;go(cur+(dn?1:-1))},{passive:false});
+addEventListener('wheel',e=>{if(scrollY<2&&cur===4&&e.deltaY>0&&!tw&&performance.now()-lock>350){e.preventDefault();scrollTo({top:innerHeight,behavior:RM?'auto':'smooth'});lock=performance.now()+800}},{passive:false});
+addEventListener('keydown',e=>{if(scrollY>2)return;if(['ArrowDown','PageDown','ArrowRight'].includes(e.key)){if(cur===4)scrollTo({top:innerHeight});else go(cur+1)}if(['ArrowUp','PageUp','ArrowLeft'].includes(e.key))go(cur-1)});
+let ty;addEventListener('touchstart',e=>ty=e.touches[0].clientY,{passive:true});
+addEventListener('touchend',e=>{if(scrollY>2||ty==null)return;const d=ty-e.changedTouches[0].clientY;if(Math.abs(d)>50){if(d>0&&cur===4)scrollTo({top:innerHeight,behavior:'smooth'});else go(cur+(d>0?1:-1))}ty=null});
+addEventListener('scroll',()=>{if(scrollY>2&&scrollY<innerHeight&&cur===4)document.body.style.overflowY='';});
+$('#ex').onclick=()=>{ping(660);go(cur===4?0:cur+1)};
+/* pointer */
+const mp={x:0,y:0,sx:0,sy:0},cu=$('#cur'),cl=$('#cur b');let cx0=0,cy0=0,mx=0,my=0;
+addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY;mp.x=e.clientX/innerWidth*2-1;mp.y=e.clientY/innerHeight*2-1});
+document.addEventListener('pointerover',e=>{const t=e.target.closest('[data-c],.mk,#hl');if(t){cu.classList.add('hv');cl.textContent=(t.dataset.c||(t.id==='hl'?'Scan':'Note')).toUpperCase()}else if(!e.target.closest('#cv'))cu.classList.remove('hv')});
+$('#hl').addEventListener('pointerenter',function(){if(this.classList.contains('sc'))return;this.classList.add('sc');setTimeout(()=>this.classList.remove('sc'),1450)});
+const rc=new THREE.Raycaster(),gd=$('#guide');let hov=false,lt=0,hp=new THREE.Vector3();
+function hover(t){if(t-lt<90||!meshes.length||tw)return;lt=t;const r=cv.getBoundingClientRect();rc.setFromCamera(new THREE.Vector2((mx-r.left)/r.width*2-1,-((my-r.top)/r.height)*2+1),cam);
+ const h=scrollY<innerHeight*.8&&rc.intersectObjects(meshes,false)[0];if(h&&!h.object.isRef){hp.copy(h.point);if(!hov){hov=true;ping();cu.classList.add('hv');cl.textContent='INSPECT';gd.querySelector('span').textContent=['BRACKET SETS','TIER '+(1+Math.min(4,Math.floor(hp.y/2))),'TIMBER COLUMN','EAVE LINE'][Math.floor(Math.random()*4)]}wu.uP.value.copy(hp);gd.classList.add('on')}else if(hov){hov=false;gd.classList.remove('on');if(!document.querySelector('[data-c]:hover'))cu.classList.remove('hv')}}
+/* snapshots for section 1 */
+function snaps(){const r2=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});r2.setPixelRatio(1);r2.setSize(800,1000);r2.outputEncoding=THREE.sRGBEncoding;r2.toneMapping=THREE.ACESFilmicToneMapping;r2.toneMappingExposure=1.15;
+ const c2=new THREE.PerspectiveCamera(36,.8,.1,400);c2.position.set(13,5.5,16);c2.lookAt(0,5,0);
+ r2.render(sc,c2);$('#lf').src=r2.domElement.toDataURL('image/jpeg',.88);$('#lm').src=$('#lf').src;
+ const keep=meshes.map(m=>m.material),vis=[water,snow,refl,wire].map(o=>o.visible),bg=sc.background,fg=sc.fog;
+ meshes.forEach(m=>m.material=new THREE.MeshBasicMaterial({color:0x7fe8ff,wireframe:true,transparent:true,opacity:.5}));[water,snow,refl,wire].forEach(o=>o.visible=false);sc.background=new THREE.Color(0x0a1424);sc.fog=null;
+ r2.render(sc,c2);$('#lw').src=r2.domElement.toDataURL('image/jpeg',.9);
+ meshes.forEach((m,i)=>m.material=keep[i]);[water,snow,refl,wire].forEach((o,i)=>o.visible=vis[i]);sc.background=bg;sc.fog=fg;r2.dispose()}
+/* load model */
+fetch('/model.glb').then(r=>{if(!r.ok)throw new Error('model.glb '+r.status);return r.arrayBuffer()}).then(bin=>new THREE.GLTFLoader().parse(bin,'',g=>{bld=g.scene;const bx=new THREE.Box3().setFromObject(bld),sz=bx.getSize(new THREE.Vector3()),ce=bx.getCenter(new THREE.Vector3()),k=10/sz.y;bld.scale.setScalar(k);bld.position.set(-ce.x*k,-bx.min.y*k,-ce.z*k);
+ B.add(bld);refl=bld.clone();refl.scale.y*=-1;refl.position.y*=-1;refl.traverse(o=>{if(o.isMesh){o.isRef=true;o.material=o.material.clone();o.material.transparent=true;o.material.opacity=.6}});B.add(refl);
+ wire=bld.clone();wire.traverse(o=>{if(o.isMesh)o.material=wmat});B.add(wire);
+ bld.traverse(o=>{if(o.isMesh){meshes.push(o);if(o.material.map)o.material.map.anisotropy=8}});
+ B.updateMatrixWorld(true);resize();go0();setTimeout(()=>{try{snaps()}catch(e){console.warn(e)}$('#load').classList.add('off');fit()},700)},e=>{console.error(e);$('#load').classList.add('off')})).catch(e=>{console.error(e);$('#load').classList.add('off')});
+function go0(){const[h,d]=ST[0];$('#hl').innerHTML=h;$('#hl').dataset.t=$('#hl').textContent;$('#ds').textContent=d;document.querySelector('#vb button').setAttribute('aria-current',true)}
+function resize(){const w=hero.clientWidth,h=hero.clientHeight;R.setSize(w,h,false);cam.aspect=w/h;cam.fov=w/h<.8?52:38;cam.updateProjectionMatrix()}
+addEventListener('resize',()=>{resize();fit()});
+/* loop */
+const clk=new THREE.Clock();let fa=0,fc=0;const up=new THREE.Vector3(0,1,0);
+function loop(){requestAnimationFrame(loop);const dt=Math.min(clk.getDelta(),.05),t=clk.elapsedTime;
+ cx0+=(mx-cx0)*.18;cy0+=(my-cy0)*.18;cu.style.transform=`translate(${cx0}px,${cy0}px)`;
+ fa+=dt;fc++;if(fa>2){if(fc/fa<34&&Q>.8){Q-=.25;R.setPixelRatio(Q);resize()}fa=fc=0}
+ if(scrollY>innerHeight*1.05)return;
+ mp.sx+=(mp.x-mp.sx)*.05;mp.sy+=(mp.y-mp.sy)*.05;const pa=RM?0:1;
+ cam.position.copy(cp);cam.lookAt(ct);const rt=new THREE.Vector3().crossVectors(cam.getWorldDirection(new THREE.Vector3()),up).normalize();
+ cam.position.addScaledVector(rt,mp.sx*1.6*pa).addScaledVector(up,-mp.sy*.9*pa);cam.lookAt(ct);
+ const W=hero.clientWidth,H=hero.clientHeight,sh=W<860?0:cs;if(sh>.001)cam.setViewOffset(W,H,-sh*W,0,W,H);else cam.clearViewOffset();
+ water.material.uniforms.t.value=t;const p=sg.attributes.position.array;for(let i=0;i<SN;i++){p[i*3+1]-=sv[i]*dt;p[i*3]+=Math.sin(t*.6+i)*.15*dt;if(p[i*3+1]<0){p[i*3+1]=30;p[i*3]=(Math.random()-.5)*60}}sg.attributes.position.needsUpdate=true;
+ wl.forEach((l,i)=>l.intensity=.85+.12*Math.sin(t*1.3+i*2));
+ hover(performance.now());wu.uA.value+=((hov?1:0)-wu.uA.value)*.12;
+ if(hov||wu.uA.value>.02){const v=hp.clone().project(cam);gd.style.left=(v.x*.5+.5)*W+'px';gd.style.top=(-v.y*.5+.5)*H+'px'}
+ R.render(sc,cam)}
+loop();
+/* ---- section 1 & 2 scroll ---- */
+const cl01=x=>Math.max(0,Math.min(1,x)),prog=el=>{const r=el.getBoundingClientRect();return cl01(-r.top/(r.height-innerHeight))};
+function fit(){}
+const lm=$('#lm'),lf=$('#lf'),ln=$('#ln');
+const g=$('#g'),NS='http://www.w3.org/2000/svg',LY=[
+ [['M60 60h480v480H60z','M100 100h400v400H100z'],'',0],
+ [['M150 150h300v300H150z','M170 170h260v260H170z'],'wl',.14],
+ [['M150 300h120M330 300h120M300 150v120M300 330v120','M255 255h90v90h-90z'],'',.28],
+ [['M270 300a30 30 0 0 1 30 -30','M330 300a30 30 0 0 0 -30 30','M300 450a40 40 0 0 1 40 -40','M100 300h50M450 300h50'],'',.42],
+ [['M180 180h50v50h-50z','M370 180h50v50h-50z','M180 370h50v50h-50z','M370 370h50v50h-50z','M300 282a18 18 0 1 0 .1 0z','M50 300h20M530 300h20'],'fw',.56],
+ [['M60 580h480M60 574v12M540 574v12','M30 60v480M24 60h12M24 540h12'],'',.7]];
+const paths=[];LY.forEach(([ds,c,s],i)=>ds.forEach(d=>{const p=document.createElementNS(NS,'path');p.setAttribute('d',d);p.setAttribute('pathLength',1);p.setAttribute('class','d '+c);g.appendChild(p);paths.push([p,s,i])}));
+[[60,596,'18.0 M'],[18,300,'']].forEach(([x,y,t])=>{if(!t)return;const e=document.createElementNS(NS,'text');e.setAttribute('x',x+190);e.setAttribute('y',y);e.textContent=t;e.style.opacity=0;e.classList.add('an2');g.appendChild(e)});
+const MK=[[300,300,'Central void','A shaft of light drops through all five tiers to the core.',.8],[450,300,'Water entry','The only threshold: a single door facing the lake.',.86],[205,205,'Corner seat','Four low seats take in the frozen shoreline.',.93]];
+const tip=$('#tip'),mks=MK.map(([x,y,h,n,s])=>{const e=document.createElementNS(NS,'g');e.setAttribute('class','mk');e.setAttribute('tabindex',0);e.setAttribute('role','button');e.setAttribute('aria-label',h+': '+n);e.innerHTML=`<circle cx="${x}" cy="${y}" r="7"/>`;e.style.opacity=0;g.appendChild(e);
+ const sh=()=>{tip.innerHTML=`<b>${h}</b>${n}`;tip.style.left=Math.min(x/600*100,66)+'%';tip.style.top=(y/600*100+3)+'%';tip.style.opacity=1;ping(740)},hd=()=>tip.style.opacity=0;
+ e.onmouseenter=e.onfocus=sh;e.onmouseleave=e.onblur=hd;return[e,s]});
+const STP=[['Concept','A single axis, five stacked tiers, and one idea: bring the sky inside.',0],['Material','Timber, lacquer and slate chosen to weather beautifully in cold light.',.3],['Light','Warm interior glow against a blue exterior hour.',.55],['Experience','The path in, the pause at the water, the view back out.',.8]];
+$('#steps').innerHTML=STP.map(s=>`<div class="st"><h4>${s[0]}</h4><p>${s[1]}</p></div>`).join('');const sts=[...document.querySelectorAll('.st')];
+function scr(){const a=prog($('#s1')),b=RM?(a>.01?1:0):a,m=b*140;
+ $('#lm').style.clipPath=`inset(0 0 ${100-cl01(m/100)*100}% 0)`;lf.style.clipPath=`inset(0 0 ${100-cl01((m-40)/100)*100}% 0)`;ln.style.top=cl01(m/100)*100+'%';ln.style.opacity=b>0&&b<.7?1:0;
+ const p=prog($('#s2'));paths.forEach(([e,s])=>{e.style.strokeDashoffset=1-cl01((p-s)/.16)});mks.forEach(([e,s])=>e.style.opacity=cl01((p-s)/.05));
+ document.querySelectorAll('.an2').forEach(e=>e.style.opacity=cl01((p-.72)/.05));sts.forEach((e,i)=>e.classList.toggle('on',p>=STP[i][2]&&(i===3||p<STP[i+1][2])))}
+addEventListener('scroll',scr,{passive:true});scr();
+$('#top').onclick=()=>scrollTo({top:0,behavior:RM?'auto':'smooth'});
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.onclick=e=>{e.preventDefault();$(a.getAttribute('href')).scrollIntoView({behavior:RM?'auto':'smooth'})});
+</script></body></html>
